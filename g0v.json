@@ -1,5 +1,9 @@
 {
 	"author":"JiMing",
+	"contributors":[
+		"JiMing",
+		"Bin Tiger"
+	],
 	"status":"planning",
 	"name":"ATM",
 	"name_zh":"圖形化農產品交易行情站",
@@ -20,9 +24,6 @@
 	"audience":"public",
 	"products":"website",
 	"projects":"ATM",
-	"contributors":[
-		"JiMing"
-	],
 	"needs":[
 		"designer",
 		"writer",
