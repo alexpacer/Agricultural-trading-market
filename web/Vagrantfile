@@ -12,8 +12,25 @@ sudo apt-get -y install mongodb-org
 sudo service mongod start
 
 
-#echo 'cd /www' >> /home/vagrant/.bashrc
-#echo 'IdentofyFile ~/.ssh1/id_rsa' >> /home/vagrant/.ssh/config
+
+
+# Install nginx
+deb http://nginx.org/packages/ubuntu/ lucid nginx
+deb-src http://nginx.org/packages/ubuntu/ lucid nginx
+
+
+sudo -s
+nginx=stable # use nginx=development for latest development version
+echo "deb http://ppa.launchpad.net/nginx/$nginx/ubuntu lucid main" > /etc/apt/sources.list.d/nginx-$nginx-lucid.list
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C300EE8C
+apt-get update 
+apt-get -y install nginx
+
+
+
+
+echo 'cd /www' >> /home/vagrant/.bashrc
+
 
 # install gem without rdoc
 echo 'gem: --no-document' >> /home/vagrant/.gemrc
@@ -37,7 +54,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # puppet 
   config.vm.synced_folder "puppet", "/puppet"
-  config.vm.synced_folder "web", "/web"
+  config.vm.synced_folder "www", "/www"
   #  create: true,
   #  owner: "vagrant",
   #  group: "vagrant"
