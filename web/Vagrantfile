@@ -18,7 +18,6 @@ sudo service mongod start
 deb http://nginx.org/packages/ubuntu/ lucid nginx
 deb-src http://nginx.org/packages/ubuntu/ lucid nginx
 
-
 sudo -s
 nginx=stable # use nginx=development for latest development version
 echo "deb http://ppa.launchpad.net/nginx/$nginx/ubuntu lucid main" > /etc/apt/sources.list.d/nginx-$nginx-lucid.list
@@ -27,6 +26,10 @@ apt-get update
 apt-get -y install nginx
 
 
+# Install rails
+
+gem install rails --version 4.1.4
+rbenv rehash
 
 
 echo 'cd /www' >> /home/vagrant/.bashrc
