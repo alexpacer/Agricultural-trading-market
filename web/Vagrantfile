@@ -1,0 +1,51 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+$shell = <<SCRIPT
+
+
+# Install Mongodb
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+sudo apt-get update
+sudo apt-get -y install mongodb-org 
+sudo service mongod start
+
+
+#echo 'cd /www' >> /home/vagrant/.bashrc
+#echo 'IdentofyFile ~/.ssh1/id_rsa' >> /home/vagrant/.ssh/config
+
+# install gem without rdoc
+echo 'gem: --no-document' >> /home/vagrant/.gemrc
+
+
+
+SCRIPT
+
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "hashicorp/precise64"
+
+  config.vm.network :forwarded_port, host: 5000, guest: 5000  # Site watch
+  
+
+  # bootstrap shell 
+  config.vm.provision :shell, :path => "puppet/ubuntu.sh"
+  config.vm.provision :shell, :inline => $shell
+
+  # puppet 
+  config.vm.synced_folder "puppet", "/puppet"
+  config.vm.synced_folder "web", "/web"
+  #  create: true,
+  #  owner: "vagrant",
+  #  group: "vagrant"
+  
+  config.vm.provision :puppet do |puppet|
+    puppet.manifests_path = "puppet/manifests"
+    puppet.module_path    = "puppet/modules"
+    puppet.manifest_file  = "default.pp"
+  end
+
+end
