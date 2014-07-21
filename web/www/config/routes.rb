@@ -2,6 +2,15 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  root 'home#index'
+
+
+  # Apis !
+  namespace :api, defaults: { format: :json } do
+    resources :products, via: [:get, :post]
+  end
+
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
