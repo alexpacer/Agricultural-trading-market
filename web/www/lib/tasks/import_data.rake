@@ -17,10 +17,17 @@ namespace :import do
     # database = config[Rails.env.to_sym]["sessions"]["default"]["database"]
 
     file = File.read(Rails.root.join('data/102-01-01-109.json'))
-
     data = JSON.parse(file)
 
-    puts data
+    data.each do |x|
+      prod = x["product"]
+      if Product.where(name: prod["name"], type: prod["type"]).count == 0
+        Product.create(prod)
+      end
+    end
+
+    
+
 
 
   end
