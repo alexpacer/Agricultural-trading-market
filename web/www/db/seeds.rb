@@ -6,5 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+markets = JSON.parse File.read(Rails.root.join("data", "market.json"))
 
-products = Product.create([{name: "黃秋葵", type: "", process: ""}])
+markets.each do |m|
+  if Market.where(code: m["code"]).count == 0
+    Market.create(m)
+  end
+end

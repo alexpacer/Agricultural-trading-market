@@ -8,6 +8,6 @@ atm.config(['$routeProvider',($routeProvider)->
     )
     .when('/veggie',
       templateUrl: 'veggie/index.html'
-      controller: 'VeggieController'
+      controller: 'VeggieContr oller'
     )
 ])
