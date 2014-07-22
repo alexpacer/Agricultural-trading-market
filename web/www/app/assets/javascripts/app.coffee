@@ -1,4 +1,4 @@
-atm = angular.module('atm',['templates','ngRoute','ngResource','controllers'])
+atm = angular.module('atm',['templates','ngRoute','ngResource'])
 
 atm.config(['$routeProvider',($routeProvider)->
   $routeProvider
@@ -11,5 +11,3 @@ atm.config(['$routeProvider',($routeProvider)->
       controller: 'VeggieController'
     )
 ])
-
-
