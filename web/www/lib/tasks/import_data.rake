@@ -12,11 +12,15 @@ namespace :import do
   end
 
   task :json => :environment do
-    dir = Dir[Rails.root.join('data','transactions','*.json')]
+    dir = Dir[Rails.root.join('data','transactions','veggies','*.json')]
+    tt = DateTime.now
+    puts "#{dir.count()} files found to be processed"
     dir.each do |x|
       ENV['FILE'] = x
       Rake::Task["import:single"].execute
     end
+    esplated = (DateTime.now - tt) / 60
+    puts "operation took #{esplated} minutes"
   end
 
   task :single => :environment do
@@ -26,12 +30,12 @@ namespace :import do
     ff = /\/(?<yy>[0-9]{3})-(?<mm>[0-9]{2})-(?<dd>[0-9]{2})-(?<market>[0-9]{2,3}).json/.match(ENV["FILE"])
     date = Date.parse("#{ff[:yy].to_i+1911}-#{ff[:mm]}-#{ff[:dd]}")
 
+    # Creates market if not exists
     market = nil
     begin
       market = Market.find_by(:code => ff[:market])
     rescue Mongoid::Errors::DocumentNotFound
       market = Market.create(:code => ff[:market], :name => "N/A")
-
     end
 
     puts "importing #{ENV["FILE"]}"
@@ -43,9 +47,9 @@ namespace :import do
         prod = Product.find_by(name: prod["name"], type: prod["type"], process: prod["process"])
       end
 
-      if Transaction.where(date: date, market_id: market.id, product: prod).count == 0
+      if Veggie.where(date: date, market_id: market.id, product: prod).count == 0
         x.delete "product"
-        t = Transaction.new x
+        t = Veggie.new x
         t.product = prod
         t.market = market
         t.date = date
