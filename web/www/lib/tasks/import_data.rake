@@ -19,7 +19,7 @@ namespace :import do
       ENV['FILE'] = x
       Rake::Task["import:single"].execute
     end
-    esplated = (DateTime.now - tt) / 60
+    esplated = (DateTime.now.to_time - tt.to_time) / 60
     puts "operation took #{esplated} minutes"
   end
 
@@ -39,24 +39,27 @@ namespace :import do
     end
 
     puts "importing #{ENV["FILE"]}"
-    data.each do |x|
-      prod = x["product"]
-      if Product.where(name: prod["name"], type: prod["type"], process: prod["process"]).count == 0
-        prod = Product.create(prod)
-      else
-        prod = Product.find_by(name: prod["name"], type: prod["type"], process: prod["process"])
-      end
 
-      if Veggie.where(date: date, market_id: market.id, product: prod).count == 0
-        x.delete "product"
-        t = Veggie.new x
-        t.product = prod
-        t.market = market
-        t.date = date
-        t.save
-      end
+    veg = data
+      .collect { |d| 
+        prod = d["product"]
+        if Product.where(name: prod["name"], type: prod["type"], process: prod["process"]).count == 0
+          prod = Product.create(prod)
+        else
+          prod = Product.find_by(name: prod["name"], type: prod["type"], process: prod["process"])
+        end
+        
+        d.delete "product"
+        d.merge({ product_id: prod.id, market_id: market.id, date: date })
+        # if Veggie.where(date: date, market_id: market.id, product: prod).count == 0
+        #   d.merge({ product: prod, market_id: market.id, date: date })
+        # else
+        #   nil
+        # end
+      }
 
-    end
+    Veggie.collection.insert(veg)
+    puts "#{veg.count} transactions inserted."
   end
 
 

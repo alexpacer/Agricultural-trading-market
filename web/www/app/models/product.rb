@@ -6,4 +6,6 @@ class Product
   field :process, type: String
 
   has_many :transactions
+
+  index({ name: 1, type: 1 }, { unique: true})
 end
