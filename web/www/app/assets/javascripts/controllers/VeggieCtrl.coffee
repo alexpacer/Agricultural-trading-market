@@ -2,8 +2,12 @@ atm = angular.module('atm')
 
 atm.controller 'VeggieController', ($scope, Product)->
 
+  $scope.product = {}
+  #$scope.product.selected = undefined
   $scope.products = []
   
+  # page actions
+  #
   $('#container').highcharts
     chart:
       type: 'bar'
@@ -15,7 +19,7 @@ atm.controller 'VeggieController', ($scope, Product)->
       categories: ['Apples', 'Bananas', 'Oranges']
 
     yAxis:
-      title: 
+      title:
         text: 'fruit eaten'
 
     series:[
@@ -29,9 +33,13 @@ atm.controller 'VeggieController', ($scope, Product)->
       }
     ]
 
-  $scope.search = (keyword)->
-    Product.query 
-      'keyword': keyword, (data)-> 
-        $scope.products = data
+  Product.query (data)->
+    $scope.products = data    
+
+  # $scope.search = (keyword)->
+  #   Product.query 
+  #     'keyword': keyword, (data)-> 
+  #       $scope.products = data
+
 
   console.log('VeggieController saying A-Lo')  

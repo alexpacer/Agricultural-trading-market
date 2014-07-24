@@ -16,6 +16,8 @@
 //= require angular/angular
 //= require angular-route/angular-route
 //= require angular-resource/angular-resource
+//= require angular-sanitize/angular-sanitize
 //= require angular-rails-templates
+//= require angular-ui-select/dist/select
 //= require highcharts/highcharts
 //= require_tree .

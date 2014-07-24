@@ -1,0 +1,14 @@
+<h1>Veggies</h1>
+
+<input type="text" ng-model="keyword" /> <button ng-click="search(keyword)">search</button>
+
+
+<ui-select ng-model="product.selected" theme="bootstrap">
+  <ui-select-match placeholder="Select or search a product in the list...">{{$select.selected.name}}</ui-select-match>
+  <ui-select-choices repeat="prod in products | filter: $select.search">
+    <div ng-bind-html="prod.name | highlight: $select.search"></div>
+    <small ng-bind-html="prod.type | highlight: $select.search"></small>
+  </ui-select-choices>
+</ui-select>
+
+<div id="container" style="width:100%; height:400px;"></div>

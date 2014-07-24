@@ -2,6 +2,10 @@
 asset 'angular'
 asset 'angular-route'
 asset 'angular-resource'
+asset 'angular-sanitize'
 asset 'bootstrap-sass-official'
+
+
+asset 'angular-ui-select'
 
 #vim: ft=ruby

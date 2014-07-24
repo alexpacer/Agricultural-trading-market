@@ -12,5 +12,6 @@
  *
  *= require_tree .
  *= require bootstrap-sass-official/assets/stylesheets/bootstrap.scss
+ *= require angular-ui-select/dist/select.min.css
  *= require_self
  */
