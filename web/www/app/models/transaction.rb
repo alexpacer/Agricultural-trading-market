@@ -1,4 +1,4 @@
-class Veggie
+class Transaction
   include Mongoid::Document
   
   field :upper, type: BigDecimal

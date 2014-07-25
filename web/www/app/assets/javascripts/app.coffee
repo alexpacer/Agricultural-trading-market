@@ -10,6 +10,9 @@ atm.config(['$routeProvider',($routeProvider, uiSelectConfig)->
       templateUrl: 'veggies/index.html'
       controller: 'VeggieController'
     )
-
-  
 ])
+
+
+# atm.run(['uiSelect2Config', (uiSelect2Config)->
+#   uiSelect2Config.placeholder = "Please select"
+# ])

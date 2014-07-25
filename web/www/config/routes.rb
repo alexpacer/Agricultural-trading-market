@@ -7,7 +7,10 @@ Rails.application.routes.draw do
 
   # Apis !
   namespace :api, defaults: { format: :json } do
-    resources :products, via: [:get, :post]
+    resources :products, via: [:get, :post] do
+      get 'transactions'
+    end
+
   end
 
 

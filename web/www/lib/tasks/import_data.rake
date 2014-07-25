@@ -11,8 +11,9 @@ namespace :import do
     puts Product.count
   end
 
-  task :json => :environment do
-    dir = Dir[Rails.root.join('data','transactions','veggies','*.json')]
+  task :veggie => :environment do
+    ENV["category"] = 'veggie'
+    dir = Dir[Rails.root.join('data','transactions','veggie','*.json')]
     tt = DateTime.now
     puts "#{dir.count()} files found to be processed"
     dir.each do |x|
@@ -21,9 +22,11 @@ namespace :import do
     end
     esplated = (DateTime.now.to_time - tt.to_time) / 60
     puts "operation took #{esplated} minutes"
+    ENV["category"] = nil
   end
 
   task :single => :environment do
+    category = ENV["category"]
     file = File.read(Rails.root.join(ENV["FILE"]))
     data = JSON.parse(file)
 
@@ -43,22 +46,28 @@ namespace :import do
     veg = data
       .collect { |d| 
         prod = d["product"]
-        if Product.where(name: prod["name"], type: prod["type"], process: prod["process"]).count == 0
-          prod = Product.create(prod)
+        if !d["product"]["name"].nil? && !d["product"]["name"].empty?
+          if Product.where(name: prod["name"], type: prod["type"], process: prod["process"]).count == 0
+            prod["category"] = category
+            prod = Product.create(prod)
+          else
+            prod = Product.find_by(name: prod["name"], type: prod["type"], process: prod["process"])
+          end
+          
+          d.delete "product"
+          d.merge({ product_id: prod.id, market_id: market.id, date: date })
+          # if Veggie.where(date: date, market_id: market.id, product: prod).count == 0
+          #   d.merge({ product: prod, market_id: market.id, date: date })
+          # else
+          #   nil
+          # end
         else
-          prod = Product.find_by(name: prod["name"], type: prod["type"], process: prod["process"])
+          nil
         end
-        
-        d.delete "product"
-        d.merge({ product_id: prod.id, market_id: market.id, date: date })
-        # if Veggie.where(date: date, market_id: market.id, product: prod).count == 0
-        #   d.merge({ product: prod, market_id: market.id, date: date })
-        # else
-        #   nil
-        # end
+
       }
 
-    Veggie.collection.insert(veg)
+    Transaction.collection.insert(veg)
     puts "#{veg.count} transactions inserted."
   end
 

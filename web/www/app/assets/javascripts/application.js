@@ -19,5 +19,8 @@
 //= require angular-sanitize/angular-sanitize
 //= require angular-rails-templates
 //= require angular-ui-select/dist/select
-//= require highcharts/highcharts
+//= require select2/select2.min
+// require highcharts/highcharts these two guys cannot appear at same time!
+//= require highstock/highstock.src.js
+//= require highstock/modules/exporting
 //= require_tree .
