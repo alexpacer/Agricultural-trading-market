@@ -5,7 +5,7 @@ asset 'angular-resource'
 asset 'angular-sanitize'
 asset 'bootstrap-sass-official'
 
-
+asset 'select2'
 asset 'angular-ui-select'
 
 #vim: ft=ruby

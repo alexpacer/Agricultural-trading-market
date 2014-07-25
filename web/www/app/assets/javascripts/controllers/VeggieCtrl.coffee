@@ -1,6 +1,6 @@
 atm = angular.module('atm')
 
-atm.controller 'VeggieController', ($scope, Product)->
+atm.controller 'VeggieController', ($scope, Product, Transaction)->
   
   # variables
   $scope.productsSelected = {}
@@ -10,29 +10,21 @@ atm.controller 'VeggieController', ($scope, Product)->
 
 
   $scope.draw = ()->
-    a = $.grep $scope.products, (e)->
-      e._id == $scope.productsSelected
-    
-    p = Product.get
-      productId: a[0]._id
-      
-    p.$promise.then (p)->
-      console.log " ------ " + p.$transactions()
-    
+    $scope.transactions = Transaction.query
+      product_id: $scope.productsSelected
+    console.log $scope.transactions
+    # .$promise.then (ppp)->
 
-    #console.log $scope.transactions
+    #   console.log ppp
 
+    #p.$transactions()
 
-  # # actions
-  # $scope.draw = ()->
-  #   console.log $scope.productsSelected
-  #   Transaction.get
-  #     productId: $scope.productsSelected[0],
-  #     (data)->
-  #       console.log(data)
-  #       $scope.transactions = data
-
-
+    # p.$transactions (response) ->
+    #   console.log response
+    # p.$promise.then (p)->
+    #   p.$transactions (data)->
+    #     console.log "data> " 
+    #     console.log data
 
 
   
