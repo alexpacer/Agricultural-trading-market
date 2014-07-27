@@ -1,32 +1,58 @@
 atm = angular.module('atm')
 
-atm.controller 'VeggieController', ($scope, Product, Transaction)->
+atm.controller 'VeggieController', ($scope, $log, Product, Transaction)->
   
   # variables
   $scope.productsSelected = {}
   $scope.products = Product.query()
-
   $scope.transactions = []
 
 
   $scope.draw = ()->
-    $scope.transactions = Transaction.query
+    Transaction.query
       product_id: $scope.productsSelected
-    console.log $scope.transactions
-    # .$promise.then (ppp)->
+    , (result)->
+      console.log result.data
 
-    #   console.log ppp
+      $("#container").highcharts "StockChart",
+        title:
+          text: $scope.productsSelected.name
 
-    #p.$transactions()
+        rangeSelector:
+          buttons: [
+            {
+              type: "hour"
+              count: 1
+              text: "1h"
+            }
+            {
+              type: "day"
+              count: 1
+              text: "1D"
+            }
+            {
+              type: "all"
+              count: 1
+              text: "All"
+            }
+          ]
+          selected: 1
+          inputEnabled: false
 
-    # p.$transactions (response) ->
-    #   console.log response
-    # p.$promise.then (p)->
-    #   p.$transactions (data)->
-    #     console.log "data> " 
-    #     console.log data
+        series: [
+          name: "AAPL"
+          type: "candlestick"
+          data: result.data
+          #   [
+          #   [1357084800000,35.3,60,31.2,23],[1357084800000,35.3,60,31.2,23]
+          # ] #$scope.transactions
+          #transactions
+          tooltip:
+            valueDecimals: 2
+        ]
 
-
+      return
+    
   
   # page actions
   # $.getJSON "http://www.highcharts.com/samples/data/jsonp.php?filename=new-intraday.json&callback=?", (data) ->

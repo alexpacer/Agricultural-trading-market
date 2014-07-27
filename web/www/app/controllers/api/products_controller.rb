@@ -15,7 +15,7 @@ class Api::ProductsController < ApplicationController
     transactions = Product.find_by(:id => product_id).transactions
 
     render json: transactions.collect{|t| 
-      [t.date.strftime('%Q'), t.volume.to_f, t.upper.to_f, ] }
+      [t.date.strftime('%Q').to_i, t.average.to_f, t.upper.to_f, t.middle.to_f, t.lower.to_f ] }
   end
 
 end

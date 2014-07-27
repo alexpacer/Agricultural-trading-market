@@ -14,6 +14,12 @@ atm.factory "Product", ($resource)->
   #     isArray: true
 
 
-atm.factory "Transaction", ($resource) ->
+atm.factory "Transaction", ($resource, $http, $log) ->
   $resource "/api/products/:product_id/transactions", 
     product_id: '@product_id'
+  ,
+    query:
+      method: 'GET'
+      # isArray: true
+      transformResponse: (data, headersGetter) -> 
+        {data: JSON.parse data}
