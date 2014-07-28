@@ -1,4 +1,6 @@
-atm = angular.module('atm',['templates','ngRoute','ngResource', 'ngSanitize', 'ui.select'])
+# 'ui.select'
+
+atm = angular.module('atm',['templates','ngRoute','ngResource', 'ngSanitize', 'pascalprecht.translate'])
 
 atm.config(['$routeProvider',($routeProvider, uiSelectConfig)->
   $routeProvider
@@ -16,3 +18,16 @@ atm.config(['$routeProvider',($routeProvider, uiSelectConfig)->
 # atm.run(['uiSelect2Config', (uiSelect2Config)->
 #   uiSelect2Config.placeholder = "Please select"
 # ])
+
+atm.config(['$translateProvider', ($translateProvider) ->
+  $translateProvider.translations 'en',
+    HELLO: 'Hello'
+
+  $translateProvider.translations 'zh', 
+    HELLO: '你好'
+    BTN_DRAW_CHARTS: '繪圖'
+    VEGGIE_VOLUME: '總量'
+
+  $translateProvider.preferredLanguage 'zh'
+
+])

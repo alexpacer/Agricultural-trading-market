@@ -8,4 +8,5 @@ asset 'bootstrap-sass-official'
 asset 'select2'
 asset 'angular-ui-select'
 
+asset 'angular-translate'
 #vim: ft=ruby

@@ -7,6 +7,7 @@
     "angular-sanitize": "latest",
     "bootstrap-sass-official": "latest",
     "select2": "latest",
-    "angular-ui-select": "latest"
+    "angular-ui-select": "latest",
+    "angular-translate": "latest"
   }
 }

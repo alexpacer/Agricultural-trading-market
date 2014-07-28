@@ -7,12 +7,6 @@ atm.factory "Veggie", ($resource)->
 atm.factory "Product", ($resource)->
   return $resource "/api/products/:productId",
     productId: '@_id'
-  # , 
-  #   transactions: 
-  #     method: 'GET'
-  #     url: "/api/products/:productId/transactions"
-  #     isArray: true
-
 
 atm.factory "Transaction", ($resource, $http, $log) ->
   $resource "/api/products/:product_id/transactions", 
@@ -22,4 +16,4 @@ atm.factory "Transaction", ($resource, $http, $log) ->
       method: 'GET'
       # isArray: true
       transformResponse: (data, headersGetter) -> 
-        {data: JSON.parse data}
+        { data: JSON.parse data }

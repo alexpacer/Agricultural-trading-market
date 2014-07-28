@@ -4,6 +4,6 @@
   <option ng-repeat="prod in products" value="{{prod._id}}">{{prod.name}} {{(prod.type != '') ? '- ' + prod.type : ''}}</option>
 </select>
 
-<button ng-click="draw()">Draw charts</button>
+<button ng-click="draw()" translate="BTN_DRAW_CHARTS"></button>
 
-<div id="container" style="width:100%; height:400px;"></div>
+<div id="container" style="width:100%; height:450px;"></div>

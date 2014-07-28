@@ -12,10 +12,27 @@ class Api::ProductsController < ApplicationController
 
   def transactions
     product_id = params[:product_id]
-    transactions = Product.find_by(:id => product_id).transactions
+    transactions = Product.find_by(:id => product_id).transactions_orderby_date
 
-    render json: transactions.collect{|t| 
-      [t.date.strftime('%Q').to_i, t.average.to_f, t.upper.to_f, t.middle.to_f, t.lower.to_f ] }
+    # 1185753600000, 20.62, 20.78, 19.94, 20.20, 277134788
+
+    render json: {
+      data: transactions.collect{|t| 
+        [
+          t.date.strftime('%Q').to_i,
+          t.lower.to_f,
+          t.upper.to_f
+          #t.middle.to_f, 
+          #0
+        ] 
+      },
+      volumes: transactions.collect{|t| 
+        [
+          t.date.strftime('%Q').to_i, 
+          t.volume.to_i
+        ]
+      }
+    }
   end
 
 end

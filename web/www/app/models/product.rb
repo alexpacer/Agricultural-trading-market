@@ -11,4 +11,11 @@ class Product
   validates_presence_of :name, :type
 
   index({ name: 1, type: 1 }, { unique: true})
+
+
+
+  def transactions_orderby_date 
+    Transaction.where(:product_id => self.id ).sort(:date => 1)
+  end
+
 end
