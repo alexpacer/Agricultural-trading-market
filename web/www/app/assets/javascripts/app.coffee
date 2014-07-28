@@ -21,12 +21,12 @@ atm.config(['$routeProvider',($routeProvider, uiSelectConfig)->
 
 atm.config(['$translateProvider', ($translateProvider) ->
   $translateProvider.translations 'en',
-    HELLO: 'Hello'
+    "HELLO": 'Hello'
 
   $translateProvider.translations 'zh', 
-    HELLO: '你好'
-    BTN_DRAW_CHARTS: '繪圖'
-    VEGGIE_VOLUME: '總量'
+    "HELLO": '你好'
+    "BTN_DRAW_CHARTS": '繪圖'
+    "VEGGIE_VOLUME": '總量'
 
   $translateProvider.preferredLanguage 'zh'
 
