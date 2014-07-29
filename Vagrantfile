@@ -31,7 +31,7 @@ gem install rails --version 4.1.4
 rbenv rehash
 
 
-echo 'cd /www' >> /home/vagrant/.bashrc
+echo 'cd /vagrant' >> /home/vagrant/.bashrc
 
 
 # install gem without rdoc
@@ -57,7 +57,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # puppet 
   config.vm.synced_folder "puppet", "/puppet"
-  config.vm.synced_folder "www", "/www"
+  #config.vm.synced_folder "www", "/www"
   #  create: true,
   #  owner: "vagrant",
   #  group: "vagrant"
