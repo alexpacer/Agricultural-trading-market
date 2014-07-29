@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :products, via: [:get, :post] do
       get 'transactions'
     end
-
+    resources :markets, via:[:get, :post]
   end
 
 

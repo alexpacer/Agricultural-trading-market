@@ -1,12 +1,14 @@
 atm = angular.module('atm')
 
 atm.controller 'VeggieController', 
-  ($scope, $log, $translate, $filter, Product, Transaction)->
+  ($scope, $log, $translate, $filter, Market, Product, Transaction)->
   
     # variables
     $scope.productsSelected = {}
+    $scope.marketSelected   = {}
+
+    $scope.markets  = Market.query()
     $scope.products = Product.query()
-    $scope.transactions = []
 
     $scope.productsSelected
 
