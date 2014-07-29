@@ -70,7 +70,6 @@ test:
 
 <% if ENV['MONGOHQ_URL'] %>
   <% uri = URI.parse(ENV['MONGOHQ_URL']) %>
-
 production:
   sessions:
     default:
@@ -79,5 +78,4 @@ production:
       password: <%= uri.password %>
       hosts:
         - <%= uri.host %>:<%= uri.port %>
-
 <% end %>
