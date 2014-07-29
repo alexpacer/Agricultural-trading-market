@@ -69,7 +69,7 @@ test:
         retry_interval: 0
 
 <% if ENV['MONGOHQ_URL'] %>
-  <% uri = URI.parse(ENV['MONGOLAB_URI']) %>
+  <% uri = URI.parse(ENV['MONGOHQ_URL']) %>
 
 production:
   <<: *defaults
