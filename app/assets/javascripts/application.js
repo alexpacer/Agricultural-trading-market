@@ -18,7 +18,7 @@
 //= require angular-resource/angular-resource
 //= require angular-sanitize/angular-sanitize
 //= require angular-rails-templates
-//= require angular-ui-select/dist/select
+// require angular-ui-select/dist/select.js
 //= require angular-translate/angular-translate
 //= require select2/select2.min
 //////// Charts
