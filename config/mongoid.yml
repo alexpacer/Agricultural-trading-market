@@ -68,9 +68,18 @@ test:
         max_retries: 1
         retry_interval: 0
 
+<% if ENV['MONGOHQ_URL'] %>
+  <% uri = URI.parse(ENV['MONGOLAB_URI']) %>
 
 production:
+  <<: *defaults
   sessions:
     default:
+      <<: *default_session
+      database: <%= uri.path.sub('/','') %>
+      username: <%= uri.user %>
+      password: <%= uri.password %>
       hosts:
-        - <%= ENV['MONGOHQ_URL'] %>
+        - <%= uri.host %>:<%= uri.port %>
+
+<% end %>
