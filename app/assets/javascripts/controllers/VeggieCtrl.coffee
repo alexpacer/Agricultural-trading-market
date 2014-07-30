@@ -5,23 +5,19 @@ atm.controller 'VeggieController',
     ($scope, $log, $translate, $filter, Market, Product, Transaction)->
     
       # variables
-      $scope.productsSelected = {}
+      $scope.productSelected = {}
       $scope.marketSelected   = {}
-
-      $scope.markets  = Market.query()
       $scope.products = Product.query()
-
-      $scope.productsSelected
-
+      
       $scope.draw = ()->
 
         product = $.grep($scope.products, (e)->
-          e._id == $scope.productsSelected)[0]
+          e._id == $scope.productSelected)[0]
 
         productName = product.name + " " + (if (product.type != "" || product.type != undefined) then " (" + product.type + ")" else "")
 
         Transaction.query
-          product_id: $scope.productsSelected
+          product_id: $scope.productSelected
         , (result)->
 
           $("#container").highcharts "StockChart",
@@ -29,7 +25,7 @@ atm.controller 'VeggieController',
               type: "columnrange"
 
             title:
-              text: $scope.productsSelected.name
+              text: $scope.productSelected.name
 
             rangeSelector:
               selected: 2
@@ -78,7 +74,20 @@ atm.controller 'VeggieController',
           return
         
 
-      $("select[name='products']").select2()
+      # ajax init methods
+      Market.selectData().$promise.then (res)->
+        console.log res.data
+
+        $("input[name='markets']").select2
+          data: res.data
+          maximumInputLength: 8 
+          multiple: true
+          width: '500px'
+
+      # Product.selectData().$promise.then (res)->
+      #   $("select[name='products']").select2
+      #     width: '300px'
+                
 
   ]
 

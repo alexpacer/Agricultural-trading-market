@@ -6,6 +6,4 @@ class Api::MarketsController < ApplicationController
     render json: markets
   end
 
-  
-
 end

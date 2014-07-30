@@ -18,12 +18,23 @@
 //= require angular-resource/angular-resource
 //= require angular-sanitize/angular-sanitize
 //= require angular-rails-templates
-// require angular-ui-select/dist/select.js
 //= require angular-translate/angular-translate
+//= require angular-bootstrap/ui-bootstrap-tpls.min.js
+//= require angularjs-dropdown-multiselect/dist/angularjs-dropdown-multiselect.min.js
+//---- select2 --------------------------
 //= require select2/select2.min
-//////// Charts
-// require highcharts/highcharts these two guys cannot appear at same time!
+//---------------------------------------
+//---- Charts ---------------------------
 //= require highstock/highstock.src.js
 //= require highcharts/highcharts-more.js
 //= require highstock/modules/exporting
+//---------------------------------------
 //= require_tree .
+
+
+
+
+
+// require highcharts/highcharts these two guys cannot appear at same time!
+// require angular-ui-select/dist/select.js
+// require bootstrap-multiselect/js/bootstrap-multiselect

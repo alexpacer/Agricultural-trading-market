@@ -8,11 +8,37 @@ atm.factory "Veggie", ['$resource', ($resource)->
 atm.factory "Product", ['$resource', ($resource)->
   return $resource "/api/products/:productId",
     productId: "@_id"
+  ,
+    selectData:
+      method: 'GET'
+      transformResponse: (data, headersGetter)->
+        products = JSON.parse data
+        result = []
+        i = 0
+        while i < products.length
+          result.push 
+            id: products[i]._id
+            text: products[i].code + ' ' + products[i].name
+          i++
+        { data: result }
 ]
 
 atm.factory "Market", ['$resource', ($resource)->
   return $resource "/api/markets/:marketId",
     marketId: "@_id"
+  ,
+    selectData:
+      method: 'GET'
+      transformResponse: (data, headersGetter)->
+        markets = JSON.parse data
+        result = []
+        i = 0
+        while i < markets.length
+          result.push 
+            id: markets[i]._id
+            text: markets[i].code + ' ' + markets[i].name
+          i++
+        { data: result }
 ]
 
 atm.factory "Transaction", ['$resource', ($resource, $http, $log) ->

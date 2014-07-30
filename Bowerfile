@@ -3,10 +3,13 @@ asset 'angular'
 asset 'angular-route'
 asset 'angular-resource'
 asset 'angular-sanitize'
-asset 'bootstrap-sass-official'
+asset 'angular-bootstrap'
+asset 'angular-ui-select'
+asset 'angularjs-dropdown-multiselect'
+asset 'angular-translate'
+
+asset 'bootstrap-multiselect'
 
 asset 'select2'
-asset 'angular-ui-select'
 
-asset 'angular-translate'
 #vim: ft=ruby
