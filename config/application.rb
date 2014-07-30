@@ -29,5 +29,6 @@ module Www
     config.assets.paths << Rails.root.join("app", "assets", "javascripts", "controllers")
     config.assets.paths << Rails.root.join("vendor","assets","bower_components")
     config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")
+    config.assets.paths << Rails.root.join("vendor","assets","bower_components","select2")
   end
 end
