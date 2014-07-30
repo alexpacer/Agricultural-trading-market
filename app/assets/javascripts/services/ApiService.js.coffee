@@ -35,7 +35,7 @@ atm.factory "Market", ['$resource', ($resource)->
         i = 0
         while i < markets.length
           result.push 
-            id: markets[i]._id
+            id: markets[i].code
             text: markets[i].code + ' ' + markets[i].name
           i++
         { data: result }

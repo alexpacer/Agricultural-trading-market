@@ -12,7 +12,14 @@ class Api::ProductsController < ApplicationController
 
   def transactions
     product_id = params[:product_id]
-    transactions = Product.find_by(:id => product_id).transactions_orderby_date
+    markets = params[:markets].nil? ? [] : params[:markets].split(",")
+
+    marketIds = []
+    markets.each do |code|
+      marketIds.push Market.find_by(:code => code).id
+    end
+
+    transactions = Product.find_by(:id => product_id).transactions_orderby_date(marketIds)
 
     # 1185753600000, 20.62, 20.78, 19.94, 20.20, 277134788
 
@@ -21,7 +28,7 @@ class Api::ProductsController < ApplicationController
         [
           t.date.strftime('%Q').to_i,
           t.lower.to_f,
-          t.upper.to_f
+          t.upper.to_f,
           #t.middle.to_f, 
           #0
         ] 

@@ -14,8 +14,16 @@ class Product
 
 
 
-  def transactions_orderby_date 
-    Transaction.where(:product_id => self.id ).sort(:date => 1)
+  def transactions_orderby_date(marketIds)
+
+    cri = Transaction.where(:product_id => self.id )
+
+    if(!marketIds.nil? && marketIds.count > 0)
+      puts "aaa"
+      cri = cri.where(:market_id.in => marketIds)
+    end
+
+    cri.sort(:date => 1)
   end
 
 end
