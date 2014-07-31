@@ -13,16 +13,16 @@ puts "Seeding Markets"
 markets = JSON.parse File.read(Rails.root.join("data", "markets.json"))
 markets.each do |m|
   # if Market.where(code: m["code"]).count == 0
-  Market.create(m)
+  #Market.create(m)
   # end
 end
 
 puts "Seeding Products"
-JSON.parse File.read(Rails.root.join("data", "products.json")).each do |p|
-  Product.create(p)
+JSON.parse(File.read(Rails.root.join("data", "products.json"))).each do |p|
+  #Product.create(p)
 end
 
 puts "Seeding Transactions"
-JSON.parse File.read(Rails.root.join("data", "transactions.json")).each do |t|
-  Transaction.create(t)
+JSON.parse(File.read(Rails.root.join("data", "transactions.json"))).each do |t|
+  #Transaction.create(t)
 end
