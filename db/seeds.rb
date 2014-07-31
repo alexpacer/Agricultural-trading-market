@@ -13,7 +13,7 @@ puts "Seeding Markets"
 markets = JSON.parse File.read(Rails.root.join("data", "markets.json"))
 markets.each do |m|
   # if Market.where(code: m["code"]).count == 0
-  #Market.create(m)
+  Market.create(m)
   # end
 end
 
