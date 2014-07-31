@@ -15,7 +15,7 @@
  
  *
  *= require_tree .
- *= require bootstrap/dist/css/bootstrap.css
+ *= require bootstrap/dist/css/bootstrap
  *= require bootstrap-multiselect/css/bootstrap-multiselect
  ***** Select2 ********************
  *= require select2/select2
