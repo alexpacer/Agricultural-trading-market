@@ -19,10 +19,10 @@ end
 
 puts "Seeding Products"
 JSON.parse(File.read(Rails.root.join("data", "products.json"))).each do |p|
-  #Product.create(p)
+  Product.create(p)
 end
 
 puts "Seeding Transactions"
 JSON.parse(File.read(Rails.root.join("data", "transactions.json"))).each do |t|
-  #Transaction.create(t)
+  Transaction.create(t)
 end
