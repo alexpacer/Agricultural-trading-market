@@ -20,7 +20,6 @@
 //= require angular-rails-templates
 //= require angular-translate/angular-translate
 //= require angular-bootstrap/ui-bootstrap-tpls.min.js
-//= require angularjs-dropdown-multiselect/dist/angularjs-dropdown-multiselect.min.js
 //---- select2 --------------------------
 //= require select2/select2.min
 //---------------------------------------
