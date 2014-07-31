@@ -16,9 +16,10 @@ atm.factory "Product", ['$resource', ($resource)->
         result = []
         i = 0
         while i < products.length
-          result.push 
-            id: products[i]._id
-            text: products[i].code + ' ' + products[i].name
+          if products[i].name != "" && products[i].code != ""
+            result.push 
+              id: products[i]._id
+              text: products[i].code + ' ' + products[i].name
           i++
         { data: result }
 ]

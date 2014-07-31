@@ -5,12 +5,25 @@ atm.controller 'VeggieController',
     ($scope, $log, $translate, $filter, Market, Product, Transaction)->
     
       # variables
+      $scope.products = Product.query()
+      $scope.markets = []
+
+      # ui variables
       $scope.pageStatus = ""
       $scope.productSelected = undefined
       $scope.marketSelected   = {}
-      $scope.products = Product.query()
 
       $scope.transactions = undefined
+
+      $scope.selectAllMarkets = ()->
+        i = 0
+        markets = []
+        while $scope.markets.length > i
+          markets.push($scope.markets[i].id)
+          i++
+
+        $("input[name='markets']").select2("val", markets)        
+        return
       
       $scope.draw = ()->
         $scope.transactions = undefined
@@ -85,12 +98,13 @@ atm.controller 'VeggieController',
 
       # ajax init methods
       Market.selectData().$promise.then (res)->
-        console.log res.data
+        $scope.markets = res.data
 
         $("input[name='markets']").select2
           data: res.data
           maximumInputLength: 8 
           multiple: true
           width: '500px'
+          placeholder: $filter('translate')('PH__FILTER_BY_MARKETS')
   ]
 
