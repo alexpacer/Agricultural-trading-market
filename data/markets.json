@@ -1,0 +1,85 @@
+[{
+	"_id" : ObjectId("53ce15697072657ff8000000"),
+	"code" : "104",
+	"name" : "台北二"
+},
+{
+	"_id" : ObjectId("53ce15697072657ff8010000"),
+	"code" : "109",
+	"name" : "台北一"
+},
+{
+	"_id" : ObjectId("53ce15697072657ff8020000"),
+	"code" : "241",
+	"name" : "三重市"
+},
+{
+	"_id" : ObjectId("53ce15697072657ff8030000"),
+	"code" : "260",
+	"name" : "宜蘭市"
+},
+{
+	"_id" : ObjectId("53ce15697072657ff8040000"),
+	"code" : "338",
+	"name" : "桃園縣"
+},
+{
+	"_id" : ObjectId("53ce15697072657ff8050000"),
+	"code" : "400",
+	"name" : "台中市"
+},
+{
+	"_id" : ObjectId("53ce15697072657ff8060000"),
+	"code" : "423",
+	"name" : "東勢區"
+},
+{
+	"_id" : ObjectId("53ce15697072657ff8070000"),
+	"code" : "540",
+	"name" : "南投市"
+},
+{
+	"_id" : ObjectId("53ce15697072657ff8080000"),
+	"code" : "600",
+	"name" : "嘉義市"
+},
+{
+	"_id" : ObjectId("53ce15697072657ff8090000"),
+	"code" : "800",
+	"name" : "高雄市"
+},
+{
+	"_id" : ObjectId("53ce15697072657ff80a0000"),
+	"code" : "830",
+	"name" : "鳳山區"
+},
+{
+	"_id" : ObjectId("53ce15697072657ff80b0000"),
+	"code" : "930",
+	"name" : "台東市"
+},
+{
+	"_id" : ObjectId("53ce2ca67072650583000000"),
+	"code" : "900",
+	"name" : "屏東市"
+},
+{
+	"_id" : ObjectId("53ce2d6c70726505bf000000"),
+	"code" : "512",
+	"name" : "N/A"
+},
+{
+	"_id" : ObjectId("53ce2d6c70726505bf0c0000"),
+	"code" : "514",
+	"name" : "N/A"
+},
+{
+	"_id" : ObjectId("53ce2d6c70726505bf220000"),
+	"code" : "648",
+	"name" : "N/A"
+},
+{
+	"_id" : ObjectId("53ce2d6c70726505bf560000"),
+	"code" : "950",
+	"name" : "N/A"
+}]

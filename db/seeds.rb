@@ -5,11 +5,24 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+#  sample data produced form
+#  mongo 127.0.0.1/www_development --eval "var c = db.markets.find(); while(c.hasNext()){ printjson(c.next()); }" >> markets.json
 
-markets = JSON.parse File.read(Rails.root.join("data", "market.json"))
-
+puts "Seeding Markets"
+markets = JSON.parse File.read(Rails.root.join("data", "markets.json"))
 markets.each do |m|
-  if Market.where(code: m["code"]).count == 0
-    Market.create(m)
-  end
+  # if Market.where(code: m["code"]).count == 0
+  Market.create(m)
+  # end
+end
+
+puts "Seeding Products"
+JSON.parse File.read(Rails.root.join("data", "products.json")).each do |p|
+  Product.create(p)
+end
+
+puts "Seeding Transactions"
+JSON.parse File.read(Rails.root.join("data", "transactions.json")).each do |t|
+  Transaction.create(t)
 end
