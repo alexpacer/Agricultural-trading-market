@@ -31,12 +31,16 @@ atm.config(['$translateProvider', ($translateProvider) ->
     "BTN_DRAW_CHARTS": '繪圖'
     "BTN_SELECT_ALL": '全選'
 
-    #Labels
+    # Labels
     "LBL_PRODUCTS": "產品分類"
     "LBL_MARKETS": "市場"
 
-    #Place holders
+    # Place holders
     "PH__FILTER_BY_MARKETS": "依市場過濾資料"
+
+    # Validations
+    "VAL_PLEASE_SELECT_PRODUCT_TYPE": "請選擇產品類別"
+    "VAL_PLEASE_SELECT_MARKET": "請選擇市場"
 
     "VEGGIE_VOLUME": '總量'
 

@@ -6,13 +6,12 @@ atm.controller 'VeggieController',
     
       # variables
       $scope.products = Product.query()
-      $scope.markets = []
+      $scope.markets = Market.query()
 
       # ui variables
       $scope.pageStatus = ""
       $scope.productSelected = undefined
-      $scope.marketSelected   = {}
-
+      $scope.marketSelected  = undefined
       $scope.transactions = undefined
 
       $scope.selectAllMarkets = ()->
@@ -27,7 +26,7 @@ atm.controller 'VeggieController',
       
       $scope.draw = ()->
         $scope.transactions = undefined
-        markets = $("input[name='markets']").select2("val")
+        #markets = $("input[name='markets']").select2("val")
         product = $.grep($scope.products, (e)->
           e._id == $scope.productSelected)[0]
 
@@ -35,7 +34,7 @@ atm.controller 'VeggieController',
 
         Transaction.query
           product_id: $scope.productSelected
-          markets: markets.join(",")
+          markets: $scope.marketSelected
         , (result)->
           $scope.transactions = result.data
 
@@ -97,14 +96,14 @@ atm.controller 'VeggieController',
           
 
       # ajax init methods
-      Market.selectData().$promise.then (res)->
-        $scope.markets = res.data
+      # Market.selectData().$promise.then (res)->
+      #   $scope.markets = res.data
 
-        $("input[name='markets']").select2
-          data: res.data
-          maximumInputLength: 8 
-          multiple: true
-          width: '500px'
-          placeholder: $filter('translate')('PH__FILTER_BY_MARKETS')
+      #   $("input[name='markets']").select2
+      #     data: res.data
+      #     maximumInputLength: 8 
+      #     multiple: true
+      #     width: '500px'
+      #     placeholder: $filter('translate')('PH__FILTER_BY_MARKETS')
   ]
 

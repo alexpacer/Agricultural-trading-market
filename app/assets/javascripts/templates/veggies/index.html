@@ -1,23 +1,24 @@
 
-<form role="form">
+<form role="form" name="query_form" novalidate>
   <div class="form-group">
-    <label for="products">{{ 'LBL_PRODUCTS' | translate }}</label>
-    <select name="products" ng-model="productSelected" style="width:300px;" select-dropdown>
+    <label for="product">{{ 'LBL_PRODUCTS' | translate }}</label>
+    <select name="product" ng-model="productSelected" style="width:300px;" select-dropdown required>
       <option ng-repeat="prod in products" value="{{prod._id}}">{{prod.name}} {{(prod.type != '') ? '- ' + prod.type : ''}}</option>
     </select>
+    <span ng-show="query_form.product.$error.required">{{ 'VAL_PLEASE_SELECT_PRODUCT_TYPE' | translate }}</span>
   </div>
   
   <div class="form-group">
-    <input type="text" name="markets" />
-    <!--button ng-click="selectAllMarkets()" class="btn btn-default">{{ 'BTN_SELECT_ALL' | translate }}</button-->
+    <label for="market">{{ 'LBL_MARKETS' | translate }}</label>
+    <select name="market" ng-model="marketSelected" style="width:300px" required select-dropdown>
+      <option ng-repeat="mkt in markets" value="{{mkt.code}}">{{mkt.name}}</option>
+    </select>
+    <span ng-show="query_form.market.$error.required">{{ 'VAL_PLEASE_SELECT_MARKET' | translate }}</span>
   </div>
-
   
-  <button ng-click="draw()" translate="BTN_DRAW_CHARTS" ng-disabled="productSelected == undefined" 
+  <button ng-click="draw()" translate="BTN_DRAW_CHARTS" ng-disabled="query_form.$invalid" 
   class="btn btn-primary"></button>
 </form>
-
-<div ng-dropdown-multiselect="" options="products" selected-model="marketSelected"></div>
 
 <div ng-show="transactions != undefined && transactions.data.length <= 0">
   {{ 'MSG_NO_RECORDS_FOUND' | translate }}
