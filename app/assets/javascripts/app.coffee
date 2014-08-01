@@ -26,6 +26,7 @@ atm.config(['$translateProvider', ($translateProvider) ->
   $translateProvider.translations 'zh', 
     # Messages
     "MSG_NO_RECORDS_FOUND": "查無資料" 
+    "MSG_LOADING": "資料載入中...." 
 
     # Buttons
     "BTN_DRAW_CHARTS": '繪圖'

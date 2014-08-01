@@ -26,7 +26,13 @@ atm.controller 'VeggieController',
       
       $scope.draw = ()->
         $scope.transactions = undefined
-        #markets = $("input[name='markets']").select2("val")
+        $scope.pageStatus = $filter('translate')('MSG_LOADING')
+        
+        # grab selected product 
+        prod = $.grep $scope.products, (node, index)->
+          return node._id == $scope.productSelected
+        prod = prod[0]
+
         product = $.grep($scope.products, (e)->
           e._id == $scope.productSelected)[0]
 
@@ -39,60 +45,63 @@ atm.controller 'VeggieController',
           $scope.transactions = result.data
 
           if result.data.length <= 0 
+            $scope.pageStatus = $filter('translate')('MSG_NO_RECORDS_FOUND')
             return
+          else
+            $scope.pageStatus = ""
 
-          $("#container").highcharts "StockChart",
-            chart:
-              type: "columnrange"
+            $("#container").highcharts "StockChart",
+              chart:
+                type: "columnrange"
 
-            title:
-              text: $scope.productSelected.name
+              title:
+                text: $scope.productSelected.name
 
-            rangeSelector:
-              selected: 2
-              inputEnabled: false
+              rangeSelector:
+                selected: 2
+                inputEnabled: false
 
-            yAxis: [
-              {
-                labels:
-                  align: "right"
-                  x: -3
+              yAxis: [
+                {
+                  labels:
+                    align: "right"
+                    x: -3
 
-                title:
-                  text: "OHLC"
+                  title:
+                    text: prod.name + ' - ' + prod.type
 
-                height: "60%"
-                lineWidth: 2
-              }
-              {
-                labels:
-                  align: "right"
-                  x: -3
+                  height: "60%"
+                  lineWidth: 2
+                }
+                {
+                  labels:
+                    align: "right"
+                    x: -3
 
-                title:
-                  text: $filter('translate')('VEGGIE_VOLUME')
+                  title:
+                    text: $filter('translate')('VEGGIE_VOLUME')
 
-                top: "65%"
-                height: "35%"
-                offset: 0
-                lineWidth: 2
-              }
-            ]
+                  top: "65%"
+                  height: "35%"
+                  offset: 0
+                  lineWidth: 2
+                }
+              ]
 
-            series: [
-              {
-                name: productName
-                data: result.data.data
-              }
-              {
-                name: $filter('translate')('VEGGIE_VOLUME')
-                type: "areaspline"
-                data: result.data.volumes
-                yAxis: 1
-              }
-            ]
+              series: [
+                {
+                  name: productName
+                  data: result.data.data
+                }
+                {
+                  name: $filter('translate')('VEGGIE_VOLUME')
+                  type: "areaspline"
+                  data: result.data.volumes
+                  yAxis: 1
+                }
+              ]
 
-          return
+            return
           
 
       # ajax init methods
