@@ -60,3 +60,7 @@ dist/
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+
+# db data dump should be ignored
+data/dump
